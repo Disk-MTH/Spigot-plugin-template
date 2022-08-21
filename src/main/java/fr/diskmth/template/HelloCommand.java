@@ -5,14 +5,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-/**
- * Created by mk on 26.03.16.
- */
-public class HelloCommand implements CommandExecutor {
-
-
+public class HelloCommand implements CommandExecutor
+{
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
+    {
         sender.sendMessage(ChatColor.RED + " Hello " + sender.getName());
         return true;
     }
