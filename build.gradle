@@ -1,0 +1,89 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id 'de.undercouch.download' version '5.1.1'
+}
+
+apply plugin: 'java'
+apply plugin: 'de.undercouch.download'
+
+
+group = project.property('group')
+version = project.property('version')
+archivesBaseName = project.property('plugin_name')
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(project.property('javaVersion'))
+
+dependencies {
+	implementation files('config/server/spigot-' + project.property('spigotVersion') + '.jar')
+}
+
+processResources {
+    filter ReplaceTokens, tokens: [
+            'mainClass': project.property('mainClass'),
+            'plugin_name': project.property('plugin_name'),
+            'version': project.property('version'),
+            'spigotVersion': project.property('spigotVersion'),
+            'javaVersion': project.property('javaVersion')
+    ]
+}
+
+jar {
+    manifest {
+        attributes(
+                'Name'     :  project.property('plugin_name'),
+                'Version'   : project.property('version'),
+                'Spigot-version'   : project.property('spigotVersion'),
+                'Java-version'   : project.property('javaVersion'),
+                'Authors'    : project.property('authors'),
+                'Credits'   : project.property('credits'),
+                'Description'   : project.property('description'),
+        )
+    }
+}
+
+task genIntellijRuns(dependsOn: ['downloadServer'], type: Copy) {
+	from 'config/idea'
+    into '.idea/runConfigurations'
+}
+
+task genEclipseRuns(dependsOn: ['downloadServer'], type: Copy) {}
+
+task downloadServer(type: Download) {
+    src 'https://download.getbukkit.org/spigot/spigot-' + project.property('spigotVersion') + '.jar'
+    dest 'config/server'
+    overwrite false
+}
+
+task setupServer(dependsOn: ['downloadServer'], type: Copy) {
+    from 'config/server'
+    into 'run'
+    eachFile {
+        if (it.relativePath.getFile(destinationDir).exists()) {
+            it.exclude()
+        }
+    }
+}
+
+task setupPlugin(dependsOn: ['build'], type: Copy) {
+    from 'build/libs'
+    into 'run/plugins'
+}
+
+task startServer(dependsOn: ['setupServer', 'setupPlugin'], type: JavaExec) {
+    classpath 'run/spigot-' + project.property('spigotVersion') + '.jar'
+    if (project.property('serverGui') == 'false')
+    {
+        args '-nogui'
+    }
+    if (project.property('minRam').toInteger() > 0)
+    {
+        jvmArgs '-Xms' + project.property('minRam') + 'M'
+    }
+    if (project.property('maxRam').toInteger() > 0)
+    {
+        jvmArgs '-Xmx' + project.property('maxRam') + 'M'
+    }
+    workingDir = 'run/'
+    standardInput = System.in
+}
