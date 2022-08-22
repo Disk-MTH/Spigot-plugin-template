@@ -7,5 +7,3 @@ javaVersion: @javaVersion@
 commands:
   hello:
     description: say hello to the user
-  tp:
-    description: teleport to the spawn

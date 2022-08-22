@@ -10,7 +10,6 @@ public class Main extends JavaPlugin
         getLogger().info(ChatColor.GREEN + "Enable Spigot Template");
 
         getCommand("hello").setExecutor(new HelloCommand());
-        getCommand("tp").setExecutor(new TeleportCommand());
     }
 
     @Override
