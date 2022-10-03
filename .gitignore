@@ -21,3 +21,4 @@ build
 # other
 src/test
 run
+config/server/*.jar

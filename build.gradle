@@ -12,7 +12,11 @@ group = project.property('group')
 version = project.property('version')
 archivesBaseName = project.property('plugin_name')
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(project.property('javaVersion'))
+compileJava {
+    options.encoding = "UTF-8"
+    sourceCompatibility = project.property('javaVersion')
+    targetCompatibility = project.property('javaVersion')
+}
 
 dependencies {
 	implementation files('config/server/spigot-' + project.property('spigotVersion') + '.jar')

@@ -6,4 +6,4 @@ javaVersion: @javaVersion@
 
 commands:
   hello:
-    description: say hello to the user
+    description: Say hello to the user
