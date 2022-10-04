@@ -66,7 +66,7 @@ Here is the detail information of this file (fields marked with a "#" can be lef
 
 - **Other**: Run the command ```./gradlew downloadServer```.
 
-After running the appropriate command for your needs, simply open the project in your IDE and use it like a regular Gradle project.
+After running the appropriate command for your needs, simply open the project in your IDE and use it like any other Gradle project.
 
 If you want to try your plugin on another server than the one provided by default (for example on a [Mohist](https://mohistmc.com/) server to test compatibility with mods), there is two case:
 - If you have already launched the server once, replace the "server.jar" in the "run" folder with the new "server.jar".
