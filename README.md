@@ -58,15 +58,23 @@ Here is the detail information of this file (fields marked with a "#" can be lef
 
 2) **Setup workspace for IDE**
 
-- **Intellij Idea**: Run the command ```./gradlew setupIdea```. After that, you can open idea and select the folder as workspace.
+- **Intellij Idea**: Run the command ```./gradlew setupIdea```.
 
 
-- **Eclipse**: Run the command ```./gradlew setupEclipse```. After that, open eclipse workspace (everywhere but not in the folder) and import the folder as general project with the button "Existing Projects into Workspace".
+- **Eclipse**: Run the command ```./gradlew setupEclipse```.
 
 
-- **Other**: Run the command ```./gradlew downloadServer```. After that open the project in your IDE.
+- **Other**: Run the command ```./gradlew downloadServer```.
 
 After running the appropriate command for your needs, simply open the project in your IDE and use it like a regular Gradle project.
+
+If you want to try your plugin on another server than the one provided by default (for example on a [Mohist](https://mohistmc.com/) server to test compatibility with mods), there is two case:
+- If you have already launched the server once, replace the "server.jar" in the "run" folder with the new "server.jar".
+- Else create the run folder and put your "server.jar" in it.
+
+/!\ **the name of the file must ABSOLUTELY be "server.jar"** /!\
+
+If you have changed server and want to use the one provided by default again, just delete the "server.jar" in the "run" folder and launch the server.
 
 ### Gradle Commands (added by the project)
 

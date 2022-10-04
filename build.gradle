@@ -69,6 +69,9 @@ task downloadServer(type: Download) {
 task setupServer(dependsOn: ['downloadServer'], type: Copy) {
     from 'config/server'
     into 'run'
+    rename { filename ->
+        filename.replace 'spigot-' + project.property('spigotVersion'), 'server'
+    }
     eachFile {
         if (it.relativePath.getFile(destinationDir).exists()) {
             it.exclude()
@@ -82,7 +85,7 @@ task setupPlugin(dependsOn: ['build'], type: Copy) {
 }
 
 task startServer(dependsOn: ['setupServer', 'setupPlugin'], type: JavaExec) {
-    classpath 'run/spigot-' + project.property('spigotVersion') + '.jar'
+    classpath 'run/server.jar'
     if (project.property('serverGui') == 'false')
     {
         args '-nogui'
