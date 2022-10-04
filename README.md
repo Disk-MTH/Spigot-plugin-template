@@ -58,13 +58,13 @@ Here is the detail information of this file (fields marked with a "#" can be lef
 
 2) **Setup workspace for IDE**
 
-- **Intellij Idea**: Run the command ```./gradlew setupIdea```.
+- **Intellij Idea**: Run the command ```./gradlew setupIdea```. After that, you can open idea and select the folder as workspace.
 
 
-- **Eclipse**: Run the command ```./gradlew setupEclipse```. /!\ **Not yet functional** /!\
+- **Eclipse**: Run the command ```./gradlew setupEclipse```. After that, open eclipse workspace (everywhere but not in the folder) and import the folder as general project with the button "Existing Projects into Workspace".
 
 
-- **Other**: Run the command ```./gradlew downloadServer```.
+- **Other**: Run the command ```./gradlew downloadServer```. After that open the project in your IDE.
 
 After running the appropriate command for your needs, simply open the project in your IDE and use it like a regular Gradle project.
 
