@@ -5,6 +5,7 @@ plugins {
 }
 
 apply plugin: 'java'
+apply plugin: 'eclipse'
 apply plugin: 'de.undercouch.download'
 
 
@@ -51,7 +52,13 @@ task genIntellijRuns(dependsOn: ['downloadServer'], type: Copy) {
     into '.idea/runConfigurations'
 }
 
-task genEclipseRuns(dependsOn: ['downloadServer'], type: Copy) {}
+task genEclipseRuns(dependsOn: ['downloadServer', 'eclipse'], type: Copy) {
+	from 'config/eclipse'
+    into 'launch'
+	rename { filename ->
+        filename.replace 'xml', 'launch'
+    }
+}
 
 task downloadServer(type: Download) {
     src 'https://download.getbukkit.org/spigot/spigot-' + project.property('spigotVersion') + '.jar'
