@@ -61,7 +61,7 @@ task genEclipseRuns(dependsOn: ['downloadServer', 'eclipse'], type: Copy) {
 }
 
 task downloadServer(type: Download) {
-    src 'https://download.getbukkit.org/spigot/spigot-' + project.property('spigotVersion') + '.jar'
+    src 'https://cdn.getbukkit.org/spigot/spigot-' + project.property('spigotVersion') + '.jar'
     dest 'config/server'
     overwrite false
 }
@@ -86,10 +86,6 @@ task setupPlugin(dependsOn: ['build'], type: Copy) {
 
 task startServer(dependsOn: ['setupServer', 'setupPlugin'], type: JavaExec) {
     classpath 'run/server.jar'
-    if (project.property('serverGui') == 'false')
-    {
-        args '-nogui'
-    }
     if (project.property('minRam').toInteger() > 0)
     {
         jvmArgs '-Xms' + project.property('minRam') + 'M'

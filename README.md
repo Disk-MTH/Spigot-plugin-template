@@ -47,9 +47,6 @@ Here is the detail information of this file (fields marked with a "#" can be lef
 - **description**: A short description of the plugin. #
 
 
-- **serverGui**: Defines if the server should start with the GUI.
-
-
 - **minRam**: The minimum amount of ram allocated to the Java process running the server (in Mo).
 
 
@@ -58,10 +55,10 @@ Here is the detail information of this file (fields marked with a "#" can be lef
 
 2) **Setup workspace for IDE**
 
-- **Intellij Idea**: Run the command ```./gradlew setupIdea```.
+- **Intellij Idea**: Run the command ```./gradlew genIntellijRuns```.
 
 
-- **Eclipse**: Run the command ```./gradlew setupEclipse```.
+- **Eclipse**: Run the command ```./gradlew genEclispeRuns```.
 
 
 - **Other**: Run the command ```./gradlew downloadServer```.
@@ -76,12 +73,19 @@ If you want to try your plugin on another server than the one provided by defaul
 
 If you have changed server and want to use the one provided by default again, just delete the "server.jar" in the "run" folder and launch the server.
 
+
+3) **Launch and build**
+
+When you are ready to test your plugin, you can launch the server with the default IDE config or with the command ```./gradlew startServer```.
+
+If you want to build your plugin, you can use the command ```./gradlew build``` or use the default IDE config and your jar will be in the "build/libs" folder.
+
 ### Gradle Commands (added by the project)
 
-- **setupIdea**: Download the jar of the server and generates the default launch configurations for Intellij Idea.
+- **genIntellijruns**: Download the jar of the server and generates the default launch configurations for Intellij Idea.
 
 
-- **setupEclipse**:  Download the jar of the server and generates the default launch configurations for Eclipse.
+- **genEclispeRuns**:  Download the jar of the server and generates the default launch configurations for Eclipse.
 
 
 - **downloadServer**: Download the jar of the server.
